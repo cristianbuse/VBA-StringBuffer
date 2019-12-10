@@ -119,6 +119,7 @@ End Sub
 '*******************************************************************************
 Public Sub Append(ByRef textToAppend As String)
     Dim addedLength As Long: addedLength = VBA.Len(textToAppend)
+    If addedLength = 0 Then Exit Sub
     Dim newEndIndex As Long: newEndIndex = m_buffer.endIndex_ + addedLength
     '
     'EnsureCapacity already checks for: newEndIndex > m_buffer.capacity_
@@ -202,6 +203,7 @@ Public Sub Insert(ByRef startIndex As Long, ByRef textToInsert As String)
     End If
     '
     Dim addedLength As Long: addedLength = VBA.Len(textToInsert)
+    If addedLength = 0 Then Exit Sub 'Nothing to insert
     Dim newEndIndex As Long: newEndIndex = m_buffer.endIndex_ + addedLength
     Dim shiftLength As Long: shiftLength = m_buffer.endIndex_ - startIndex + 1
     '

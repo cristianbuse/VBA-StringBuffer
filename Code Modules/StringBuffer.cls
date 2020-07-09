@@ -13,7 +13,7 @@ Attribute VB_Exposed = False
 ''' https://github.com/cristianbuse/VBA-StringBuffer
 '''-------------------------------------------------
 '''
-''' Copyright (c) 2020 Ion Cristian Buse
+''' Copyright (c) 2019 Ion Cristian Buse
 '''
 ''' Permission is hereby granted, free of charge, to any person obtaining a copy
 ''' of this software and associated documentation files (the "Software"), to deal

@@ -47,55 +47,6 @@ FailInput:
     TestAppendTimeWithBuffer = CVErr(xlErrValue)
 End Function
 
-Public Function TestInsertTimeWithCopyMemory(ByVal wordsCount As Long, wordLength As Long) As Variant
-    'Check Input
-    If wordsCount < 1 Then GoTo FailInput
-    If wordLength < 1 Then GoTo FailInput
-    If wordsCount * wordLength > 2147483647 Then GoTo FailInput
-    '
-    Dim i As Long
-    Dim resultString As String
-    Dim word As String: word = String$(wordLength, "A")
-    Dim buff As New StringBuffer
-    Dim tStart As Date: tStart = TimeNow
-    '
-    buff.Append "AAA"
-    For i = 1 To wordsCount
-        buff.Insert 2, word
-    Next i
-    Set buff = Nothing
-    '
-    TestInsertTimeWithCopyMemory = TimeToSeconds(TimeNow - tStart)
-Exit Function
-FailInput:
-    TestInsertTimeWithCopyMemory = CVErr(xlErrValue)
-End Function
-
-Public Function TestInsertTimeWithoutCopyMemory(ByVal wordsCount As Long, wordLength As Long) As Variant
-    'Check Input
-    If wordsCount < 1 Then GoTo FailInput
-    If wordLength < 1 Then GoTo FailInput
-    If wordsCount * wordLength > 2147483647 Then GoTo FailInput
-    '
-    Dim i As Long
-    Dim resultString As String
-    Dim word As String: word = String$(wordLength, "A")
-    Dim buff As New StringBuffer
-    Dim tStart As Date: tStart = TimeNow
-    '
-    buff.Append "AAA"
-    buff.UseCopyMemoryForLargeChunks = False 'The difference from TestInsertTimeWithCopyMemory
-    For i = 1 To wordsCount
-        buff.Insert 2, word
-    Next i
-    Set buff = Nothing
-    '
-    TestInsertTimeWithoutCopyMemory = TimeToSeconds(TimeNow - tStart)
-Exit Function
-FailInput:
-    TestInsertTimeWithoutCopyMemory = CVErr(xlErrValue)
-End Function
-
 '*******************************************************************************
 'Timing
 '*******************************************************************************

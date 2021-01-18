@@ -1,7 +1,7 @@
 # VBA-StringBuffer
 
 A string buffer is like a String, but can be modified.
-StringBuffer is a VBA Class that allows faster String Append/Concatenation than regular VBA concatenation and also provides other useful methods like Insert, Delete, Replace.
+StringBuffer is a VBA Class that allows faster String Append/Concatenation than regular VBA concatenation (by using the ```Mid``` statement) and also provides other useful methods like Insert, Delete, Replace. The naming and the structure of the methods mimic a Java-like String Buffer.
 
 ## Installation
 
@@ -11,11 +11,39 @@ Just import the following code module in your VBA Project:
 
 ## Usage
 Create a new instance of the StringBuffer class and you are ready to use its methods:
+
 ```vba
 Dim buff As New StringBuffer
 ```
 
-Example1 (see DEMO_General Module for full code):
+Example1:
+```vba
+Sub BufferMethodsDemo()
+    Dim buff As New StringBuffer
+    '
+    buff.Append "ABFGH"
+    Debug.Print buff.Value 'ABFGH
+    '
+    buff.Insert 3, "CDE"
+    Debug.Print buff 'ABCDEFGH
+    '
+    buff.Reverse
+    Debug.Print buff 'HGFEDCBA
+    '
+    buff.Replace 2, 2, "XX"
+    Debug.Print buff 'HXXEDCBA
+    '
+    buff.Reverse
+    Debug.Print buff 'ABCDEXXH
+    '
+    buff.Delete 6, 2
+    Debug.Print buff 'ABCDEH
+    '
+    Debug.Print buff.Substring(2, 3) 'BCD
+End Sub
+```
+
+Example2 (see DEMO_General Module for full code):
 ```vba
 Public Function TabDelimitedTextFrom2DArray(arr As Variant) As String
     Const methodName As String = "TabDelimitedTextFrom2DArray"
@@ -52,36 +80,9 @@ ErrorHandler:
 End Function
 ```
 
-Example2:
-```vba
-Sub BufferMethodsDemo()
-    Dim buff As New StringBuffer
-    '
-    buff.Append "ABFGH"
-    Debug.Print buff.Value 'ABFGH
-    '
-    buff.Insert 3, "CDE"
-    Debug.Print buff 'ABCDEFGH
-    '
-    buff.Reverse
-    Debug.Print buff 'HGFEDCBA
-    '
-    buff.Replace 2, 2, "XX"
-    Debug.Print buff 'HXXEDCBA
-    '
-    buff.Reverse
-    Debug.Print buff 'ABCDEXXH
-    '
-    buff.Delete 6, 2
-    Debug.Print buff 'ABCDEH
-    '
-    Debug.Print buff.Substring(2, 3) 'BCD
-End Sub
-```
-
 ## Notes
-* The StringBuffer is extremely useful for operations that involve lots of append or insert operations. For example, it can append 1 character at a time for a million times in about 15 milliseconds on a Windows OS.
-* You can download the available Demo Workbook. There are 2 Worksheets that allow you to test the Append and Insert speeds and also 2 Worksheets with a few saved speed results for comparison.
+* The StringBuffer is extremely useful for operations that involve lots of append operations. For example, it can append 1 character at a time for a million times in about 15 milliseconds on a Windows OS.
+* You can download the available Demo Workbook. There is a Worksheet that allows you to test the Append speed and also another Worksheet with a few saved speed results for comparison.
 
 ## License
 MIT License

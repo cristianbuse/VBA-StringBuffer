@@ -1,6 +1,6 @@
 # VBA-StringBuffer
 
-A string buffer is like a String, but can be modified.
+A string buffer is like a String, but can be modified more easily using the built-in methods.
 StringBuffer is a VBA Class that allows faster String Append/Concatenation than regular VBA concatenation (by using the ```Mid``` statement) and also provides other useful methods like Insert, Delete, Replace. The naming and the structure of the methods mimic a Java-like String Buffer.
 
 ## Installation

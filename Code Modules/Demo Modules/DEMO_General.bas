@@ -7,7 +7,7 @@ Private Const MODULE_NAME As String = "DEMO_General"
 '*******************************************************************************
 'Converts an array of Variants into a tab delimited text
 '*******************************************************************************
-Public Function TabDelimitedTextFrom2DArray(arr As Variant) As String
+Public Function TabDelimitedTextFrom2DArray(ByRef arr As Variant) As String
     Const methodName As String = "TabDelimitedTextFrom2DArray"
     '
     If GetDimensionsCount(arr) <> 2 Then
@@ -44,7 +44,7 @@ End Function
 '*******************************************************************************
 'Returns the Number of dimensions for an input array
 '*******************************************************************************
-Public Function GetDimensionsCount(inputArray As Variant) As Long
+Public Function GetDimensionsCount(ByVal inputArray As Variant) As Long
     Dim dimensionIndex As Long
     Dim dimensionBound As Long
     '
@@ -58,7 +58,7 @@ FinalDimension:
     GetDimensionsCount = dimensionIndex - 1
 End Function
 
-Sub BufferMethodsDemo()
+Public Sub BufferMethodsDemo()
     Dim buff As New StringBuffer
     '
     buff.Append "ABFGH"

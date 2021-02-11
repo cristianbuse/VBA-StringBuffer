@@ -90,7 +90,7 @@ End Sub
 '*******************************************************************************
 'Delete a portion of the text
 '*******************************************************************************
-Public Sub Delete(ByRef startIndex As Long, ByRef length_ As Long)
+Public Sub Delete(ByVal startIndex As Long, ByVal length_ As Long)
     'Validate Input
     If startIndex < 1 Or startIndex > m_buffer.endIndex_ Then
         Err.Raise 9, TypeName(Me) & ".Delete", "Invalid startIndex"
@@ -139,7 +139,7 @@ End Sub
 '*******************************************************************************
 'Insert new text into buffer
 '*******************************************************************************
-Public Sub Insert(ByRef startIndex As Long, ByRef textToInsert As String)
+Public Sub Insert(ByVal startIndex As Long, ByRef textToInsert As String)
     'Validate Input
     If startIndex < 1 Or startIndex > m_buffer.endIndex_ Then
         Err.Raise 9, TypeName(Me) & ".Insert", "Invalid startIndex"
@@ -172,7 +172,7 @@ End Sub
 '*******************************************************************************
 'Replace a portion of the buffer with a given text
 '*******************************************************************************
-Public Sub Replace(ByRef startIndex As Long, ByRef length_ As Long, ByRef replacementText As String)
+Public Sub Replace(ByVal startIndex As Long, ByVal length_ As Long, ByRef replacementText As String)
     'Validate Input
     If startIndex < 1 Or startIndex > m_buffer.endIndex_ Then
         Err.Raise 9, TypeName(Me) & ".Replace", "Invalid startIndex"
@@ -218,7 +218,7 @@ End Sub
 '*******************************************************************************
 'Returns a substring
 '*******************************************************************************
-Public Function Substring(ByRef startIndex As Long, ByRef length_) As String
+Public Function Substring(ByVal startIndex As Long, ByVal length_ As Long) As String
     'Validate Input
     If startIndex < 1 Or startIndex > m_buffer.endIndex_ Then
         Err.Raise 9, TypeName(Me) & ".Substring", "Invalid startIndex"

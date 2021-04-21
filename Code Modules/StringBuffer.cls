@@ -129,8 +129,12 @@ Public Sub EnsureCapacity(ByVal minimumCapacity As Long)
     If minimumCapacity > m_buffer.capacity_ Then
         Dim oldCapacity As Long: oldCapacity = m_buffer.capacity_
         '
-        m_buffer.capacity_ = minimumCapacity * 2
-        If m_buffer.capacity_ > MAX_CAPACITY Then m_buffer.capacity_ = MAX_CAPACITY
+        'Avoid overflow
+        If CDbl(minimumCapacity) * 2# > CDbl(MAX_CAPACITY) Then
+            m_buffer.capacity_ = MAX_CAPACITY
+        Else
+            m_buffer.capacity_ = minimumCapacity * 2
+        End If
         '
         m_buffer.text_ = m_buffer.text_ & VBA.Space$(m_buffer.capacity_ - oldCapacity)
     End If
